@@ -1,0 +1,48 @@
+# pku_poj//最大路径
+
+//Êý×éµÄ´Ó¶¥¶ËÍùÏÂ×î´óºÍ
+
+
+#include<malloc.h> /* malloc()¦Ì¨¨ */
+#include<stdio.h> /* EOF(=^Z?¨°F6),NULL */
+#include<math.h> /* floor(),ceil(),abs() */
+#define MAX 101
+int D[MAX][MAX];
+int maxSum[MAX][MAX];
+	int n;
+
+int max(int x,int y){
+	int m;
+	if(x>y)
+		m=x;
+	else m=y;
+	return m;
+	}
+
+int MaxSum(int i,int j){
+	int x=0,y=0;
+	if(maxSum[i][j]!=-1)
+		return maxSum[i][j];
+	if(i==n){
+		maxSum[i][j]=D[i][j];
+	}
+	else{
+		x=MaxSum( i+1, j);
+		y=MaxSum( i+1, j+1);
+		maxSum[i][j]=max(x,y)+D[i][j];
+	}
+	return maxSum[i][j];
+}
+
+int main(){
+	int i,j;
+	scanf("%d\n",&n);
+	for(i=1;i<=n;i++){
+		for(j=1;j<=i;j++){
+			scanf("%d",&D[i][j]);
+			maxSum[i][j]=-1;
+		}
+	}
+	printf("%d",MaxSum(1,1));
+
+}
