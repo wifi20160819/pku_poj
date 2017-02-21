@@ -1,0 +1,25 @@
+# pku_poj
+#include<malloc.h> /* malloc()¦Ì¨¨ */
+#include<stdio.h> /* EOF(=^Z?¨°F6),NULL */
+#include<math.h> /* floor(),ceil(),abs() */
+int main(){
+	int i=2,j=2;
+	int IsPrime[100];
+	for(i=2;i<100;i++)
+	{
+		IsPrime[i]=1;
+	}
+	for(i=2;i<100;i++){
+		if(IsPrime[i]){
+			for(j=2*i;j<100;j+=i){
+				IsPrime[j]=0;
+			}
+		}
+	}
+		for(i=2;i<100;i++){
+			if(IsPrime[i])
+				printf("%d\n",i);
+	}
+		return 0;
+	
+}
