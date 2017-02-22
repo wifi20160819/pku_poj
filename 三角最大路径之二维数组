@@ -1,0 +1,46 @@
+# pku_poj
+
+//Êý×éµÄ´Ó¶¥¶ËÍùÏÂ×î´óºÍ
+
+
+#include<malloc.h> /* malloc()¦Ì¨¨ */
+#include<stdio.h> /* EOF(=^Z?¨°F6),NULL */
+#include<math.h> /* floor(),ceil(),abs() */
+#define MAX 101
+int D[MAX][MAX];
+int maxsum[MAX][MAX];
+	int n;
+
+int max(int x,int y){
+	int m;
+	if(x>y)
+		m=x;
+	else m=y;
+	return m;
+	}
+
+
+
+
+int main(){
+	int i,j;
+	scanf("%d\n",&n);
+	for(i=1;i<=n;i++){
+		for(j=1;j<=i;j++){
+			scanf("%d",&D[i][j]);
+		}
+	}
+
+	for(i=1;i<=n;i++){
+		maxsum[n][i]=D[n][i];
+	}
+
+	for(i=n-1;i>=1;i--){
+		for(j=1;j<=i;j++){
+			maxsum[i][j]=max(maxsum[i+1][j],maxsum[i+1][j+1])+D[i][j];
+		}
+	}
+
+	printf("%d",maxsum[1][1]);
+
+}
