@@ -1,0 +1,48 @@
+# pku_poj#include<string.h>
+#include<math.h>
+#include<stdio.h>
+int main()
+  {
+	char ch1[202],ch2[202],ch3[404];
+	int i=0,j=0;
+	int n,k=0;
+	int flag[202][202]={0};
+	int lenth1=0,lenth2=0,lenth3=0;
+	scanf("%d",&n);
+	    ch1[0]='1';
+		ch2[0]='1';
+		ch3[0]='1';
+
+	for(k=1;k<=n;k++){
+
+	scanf("%s%s%s",&ch1[1],&ch2[1],&ch3[1]);
+	lenth1=strlen(ch1)-1;
+	lenth2=strlen(ch2)-1;
+	lenth3=strlen(ch3)-1;
+
+
+		for(i=1;i<=lenth1;i++){
+			if(ch1[i]==ch3[i])
+				flag[i][0]=1;
+		}
+
+
+		for(i=1;i<=lenth2;i++){
+			if(ch2[i]==ch3[i])
+				flag[0][i]=1;
+		}
+
+		for(i=1;i<=lenth1;i++){
+			for(j=1;j<=lenth2;j++)
+				flag[i][j]=flag[i-1][j]&&(ch1[i]==ch3[i+j])||flag[i][j-1]&&(ch2[j]==ch3[i+j]);
+		}
+
+		printf("Data set %d:%s",k,flag[lenth1][lenth2]? "yes":"no");
+
+
+
+	}
+	return 0;
+
+
+ }
