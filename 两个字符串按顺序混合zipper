@@ -37,7 +37,7 @@ int main()
 				flag[i][j]=flag[i-1][j]&&(ch1[i]==ch3[i+j])||flag[i][j-1]&&(ch2[j]==ch3[i+j]);
 		}
 
-		printf("Data set %d:%s",k,flag[lenth1][lenth2]? "yes":"no");
+		printf("Data set %d: %s\n",k,flag[lenth1][lenth2]? "yes":"no");
 
 
 
