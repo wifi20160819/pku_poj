@@ -10,8 +10,8 @@ int main()
     int n,m;
     cin>>n;
     for (int i=1;i<=n;i++)
-     scanf("%d",&a[i]);
-    sort(a+1,a+n+1);
+     scanf("%d",&a[i]);//cin>>a[i];也行！！！
+    sort(a+1,a+n+1);//注意！！！a+n+1表示从1到n排序，n+1表示末尾指针；
     cin>>m;
     for (int i=n;i>=n-m+1;i--)
      cout<<a[i]<<endl;
