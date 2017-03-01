@@ -1,0 +1,93 @@
+# pku_poj
+#include <cstdlib>
+#include<cstring>
+#include<memory>
+#include <iostream>
+#include<algorithm>
+//熄灯问题！！ 
+using namespace std;
+
+char InitLight[5];
+char Lights[5];
+char Results[5];
+
+int Getbit(char c,int i){
+    return (c>>i)&1;
+}
+
+void Setbit(char &c,int i,int v){
+    if(v){
+          c|=(1<<i);
+          }
+          else{
+               c&= ~(1<<i);
+               }
+    }
+    
+void Flipbit(char &c,int i){
+         c^=(1<<i);
+}
+
+
+int OutPutLight(int t,char Results[]){
+    cout<<"PUZZLE #"<<t<<endl;
+    for(int i=0;i<5;i++){
+            for(int j=0;j<6;j++){
+                    cout<<(Getbit(Results[i],j));
+                    if(j<5)
+                    cout<<" ";
+                    }
+                    cout<<endl;
+            }
+}
+    
+    
+int main()
+{
+    
+  	int T;
+	cin>>T;
+           	
+	for(int t=1;t<=T;t++){
+          
+       	for(int i=0;i<5;i++){
+            for(int j=0;j<6;j++){
+                    int s;
+                    cin>>s;
+                    Setbit(InitLight[i],j,s);
+                    }                 
+            }//自带换行
+             
+                    
+            for(int n=0;n<64;n++){
+                    memcpy(Lights,InitLight,sizeof(InitLight));
+                    int swiths=n;
+                    for(int i=0;i<5;i++){
+                            Results[i]=swiths;            
+                            for(int j=0;j<6;j++){
+                                    if(Getbit(swiths,j)){
+                                    if(j>0){
+                                            Flipbit(Lights[i],j-1);
+                                            }
+                                            Flipbit(Lights[i],j);
+                                    if(j<5)
+                                     Flipbit(Lights[i],j+1);                                    
+                                    }
+                                }                              
+                             if(i<4)
+                            Lights[i+1]^=swiths;
+                            swiths=Lights[i];                     
+                            }//I
+                             if(Lights[4]==0){
+                                     OutPutLight(t,Results);
+                                     break;
+                                     }
+                          
+                    
+                    }//N
+                   }//T
+    
+	system("PAUSE"); 
+	return 0;
+		
+}
