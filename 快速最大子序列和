@@ -1,0 +1,35 @@
+# pku_poj
+#include <cstdlib>
+#include<cstring>
+#include<memory>
+#include <iostream>
+#include<algorithm>
+//Ï¨µÆÎÊÌâ£¡£¡ 
+using namespace std;
+
+int a[100010];
+int main(){
+    int k;
+    int MaxSum=0;
+    int Sum=0;
+    int n=0;
+    cin>>k;
+    for(int i=0;i<k;i++){
+            cin>>a[i];
+            cout<<" ";
+            }
+            
+    for(int i=0;i<k;i++){
+    
+        Sum+=a[i];
+        if(MaxSum<Sum)
+        MaxSum=Sum;
+        else if(Sum<0)
+           Sum=0;
+           }//i
+    cout<<MaxSum<<endl;
+      
+	system("PAUSE"); 
+	return 0;
+		
+}
